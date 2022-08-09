@@ -1,5 +1,7 @@
 import "./App.css";
-import ExpenseItem from "./components/ExpenseItem";
+import ExpenseItem from "./components/Expenses/ExpenseItem";
+import Card from "./components/UI/Card";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 function App() {
   const expenses = [
@@ -24,11 +26,19 @@ function App() {
     },
   ];
 
+  const addExpenseHandler = (expense) => {
+    console.log("In App js");
+    console.log(expense);
+  };
+
   return (
     <div className="App">
-      {expenses.map((el) => (
-        <ExpenseItem title={el.title} amount={el.amount} date={el.date} />
-      ))}
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Card>
+        {expenses.map((el) => (
+          <ExpenseItem title={el.title} amount={el.amount} date={el.date} />
+        ))}
+      </Card>
     </div>
   );
 }
